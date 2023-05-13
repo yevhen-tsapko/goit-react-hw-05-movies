@@ -1,20 +1,17 @@
 import { Form, Input } from './SearchBox.styled';
 
-export const SearchBox = ({ onChange, value }) => {
-  // const handleSubmit = evt => {
-  //   evt.preventDefault();
-  //   const newQuery = evt.currentTarget.value.toLowerCase().trim();
-  //   onSubmit(newQuery);
-  // };
+export const SearchBox = ({ onSubmit }) => {
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    const newQuery = evt.currentTarget.elements.input.value
+      .toLowerCase()
+      .trim();
+    onSubmit(newQuery);
+  };
   return (
-    <div>
-      <Input
-        type="text"
-        name="input"
-        onChange={evt => onChange(evt.target.value)}
-        value={value}
-      />
+    <Form onSubmit={handleSubmit}>
+      <Input type="text" name="input" />
       <button type="submit">Search</button>
-    </div>
+    </Form>
   );
 };
