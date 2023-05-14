@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import {
   NavLink,
   Link,
@@ -12,7 +12,7 @@ const MovieDetails = () => {
   const { id } = useParams();
   const [movieDetail, setMovieDetail] = useState({});
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = useRef(location.state?.from ?? '/');
   const transformData = ({
     title,
     release_date,
@@ -24,7 +24,9 @@ const MovieDetails = () => {
     const year = release_date.slice(0, 4) || 'Year is unknown';
     const userScore = Math.round(vote_average * 10);
     const genresList = genres.map(genre => genre.name).join(', ');
-    const posterPath = `https://image.tmdb.org/t/p/w500${poster_path}`;
+    const posterPath = poster_path
+      ? `https://image.tmdb.org/t/p/w500${poster_path}`
+      : `http://dummyimage.com/300x450/99cccc.jpg&text=Poster`;
     return { title, year, userScore, overview, posterPath, genresList };
   };
   useEffect(() => {
@@ -36,7 +38,7 @@ const MovieDetails = () => {
     movieDetail;
   return (
     <div>
-      <Link to={backLinkHref}>Go back</Link>
+      <Link to={backLinkHref.current}>Go back</Link>
       <Info>
         <Poster src={posterPath} alt="poster"></Poster>
         <div>
