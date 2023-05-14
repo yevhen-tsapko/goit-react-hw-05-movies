@@ -1,10 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayot';
-import { Cast } from './Cast/Cast';
-import { Reviews } from './Reveiws';
-import { MoviesList } from 'components/MoviesList/MoviesList';
-import MovieDetails from 'pages/MovieDetails/MovieDetails';
-import Movies from 'pages/Movies/Movies';
+import { lazy } from 'react';
+import MoviesList from 'components/MoviesList/MoviesList';
+const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Reviews = lazy(() => import('./Reveiws'));
+const Movies = lazy(() => import('pages/Movies/Movies'));
 const trendingUrl = 'trending/movie/week?';
 export const App = () => {
   return (

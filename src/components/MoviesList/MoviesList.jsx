@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { fetchMovies } from 'servises/fetchMovie';
 import { SectionTitle } from './MoviesList.styled';
-export const MoviesList = ({ additionalUrl, sectionTitle }) => {
+import PropTypes from 'prop-types';
+const MoviesList = ({ additionalUrl, sectionTitle }) => {
   const [moviesList, setMoviesList] = useState([]);
   const location = useLocation();
   useEffect(() => {
@@ -27,3 +28,9 @@ export const MoviesList = ({ additionalUrl, sectionTitle }) => {
     </section>
   );
 };
+
+MoviesList.propTypes = {
+  additionalUrl: PropTypes.string.isRequired,
+  sectionTitle: PropTypes.string,
+};
+export default MoviesList;

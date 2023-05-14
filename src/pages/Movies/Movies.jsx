@@ -1,4 +1,4 @@
-import { MoviesList } from 'components/MoviesList/MoviesList';
+import MoviesList from 'components/MoviesList/MoviesList';
 import { SearchBox } from 'components/SearchBox/SearchBox';
 import { useSearchParams } from 'react-router-dom';
 const Movies = () => {

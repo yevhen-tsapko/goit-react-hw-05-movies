@@ -2,7 +2,7 @@ import { fetchMovies } from 'servises/fetchMovie';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Profile } from './Cast.styled';
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState();
   const { id } = useParams();
   useEffect(() => {
@@ -30,3 +30,4 @@ export const Cast = () => {
     )
   );
 };
+export default Cast;
